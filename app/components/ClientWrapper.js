@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import PageLoader from "./ui/PageLoader"; // Update path if needed
-import QuickAccessFloating from "./QuickAccessFloating"; // <-- ✅ import your new button
+import PageLoader from "./ui/PageLoader"; 
+import QuickAccessFloating from "./QuickAccessFloating"; 
 
 export default function ClientWrapper({ children }) {
   const pathname = usePathname();

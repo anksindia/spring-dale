@@ -62,13 +62,13 @@ const CampusesSection = () => {
       title: 'Almora Campus',
       desc: 'Nestled in the scenic Almora hills, this campus offers nature-inspired classrooms, outdoor learning, and a strong focus on creativity and exploration.',
       img: '/spring.webp',
-      btn: 'Explore Almora',
+      btn: 'Explore Branch',
     },
     {
       title: 'Dharanaula Campus',
       desc: 'Located in the heart of the city, our Dharanaula branch focuses on AI-based learning, future technologies, and collaborative innovation studios.',
       img: '/sec.png',
-      btn: 'Explore Dharanaula',
+      btn: 'Explore Branch',
     },
   ];
 
@@ -79,7 +79,7 @@ const CampusesSection = () => {
           <div
             key={campus.title}
             ref={(el) => (cardsRef.current[index] = el)}
-            className="bg-[var(--primary-blue-2)] rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300"
+            className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300"
           >
             <div className="relative w-full h-64 sm:h-72 md:h-80">
               <Image
@@ -92,10 +92,10 @@ const CampusesSection = () => {
                 priority={index === 0}
               />
             </div>
-            <div className="p-6 flex flex-col justify-between grow text-white">
+            <div className="p-6 flex flex-col justify-between grow text-[var(--primary-blue-2)]">
               <h3 className="text-2xl font-semibold mb-3">{campus.title}</h3>
-              <p className="text-white/80 leading-relaxed mb-6">{campus.desc}</p>
-              <button className="self-start border border-white text-white hover:bg-white hover:text-[var(--primary-blue-2)] px-5 py-2 rounded-md transition-colors duration-300 text-sm font-medium">
+              <p className="text-black/80 leading-relaxed mb-6">{campus.desc}</p>
+              <button className="self-start border border-[var(--primary-blue-2)] text-[var(--primary-blue-2)] hover:bg-[var(--primary-blue-2)] hover:text-white px-5 py-2 rounded-md transition-colors duration-300 text-sm font-medium">
                 {campus.btn}
               </button>
             </div>

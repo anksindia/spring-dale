@@ -1,79 +1,82 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaFacebook, FaInstagram, FaWhatsapp, FaYoutube } from 'react-icons/fa';
-
+import { IoIosMail } from 'react-icons/io';
 
 const Footer = () => {
-  return (
-    <div className='w-full'>
-      <footer className="w-full bg-[var(--primary-blue-1)] text-[#FFFFFF]">
-        <div className="container mx-auto px-4 py-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+  const currentYear = new Date().getFullYear();
 
-            <div className="mb-6">
-              <h3 className="font-bold text-lg mb-2">ALMORA BRANCH</h3>
-              <p className="mb-4">(Grades 1-12)</p>
-              <address className="not-italic">
-                <p>Near taxi stand</p>
-                <p>Almora, Uttrakhand 263601</p>
-                <p>+91-8588093798</p>
+  return (
+    <div className="w-full">
+      <footer className="w-full bg-[var(--primary-blue-1)] text-white text-sm">
+        <div className="container mx-auto px-4 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+
+            {/* Almora Branch */}
+            <div>
+              <h3 className="font-semibold text-base mb-2">ALMORA BRANCH</h3>
+              <p className="mb-2 text-gray-300">(Grades 1–12)</p>
+              <address className="not-italic space-y-1">
+                <p>Near Taxi Stand</p>
+                <p>Almora, Uttarakhand 263601</p>
+                <p>+91-9557413361</p>
               </address>
             </div>
 
-            <div className="mb-6">
-              <h3 className="font-bold text-lg mb-2">DHARANAULA BRANCH</h3>
-              <p className="mb-4">(Grades K-6)</p>
-              <address className="not-italic">
+            {/* Dharanaula Branch */}
+            <div>
+              <h3 className="font-semibold text-base mb-2">DHARANAULA BRANCH</h3>
+              <p className="mb-2 text-gray-300">(Grades K–6)</p>
+              <address className="not-italic space-y-1">
                 <p>Paltan Bazar, Dharanaula</p>
                 <p>Almora, Uttarakhand 263601</p>
                 <p>+91-8588093798</p>
               </address>
             </div>
 
-            <div className="mb-6">
-              <h3 className="font-bold text-lg mb-6">DISCOVER</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:underline">ALMORA BRANCH</a></li>
-                <li><a href="#" className="hover:underline">DHARANAULA BRANCH</a></li>
-                <li><a href="#" className="hover:underline">Schools Network</a></li>
-                <li><a href="#" className="hover:underline">Global Connect</a></li>
+            {/* Quick Links */}
+            <div>
+              <h3 className="font-semibold text-base mb-2">QUICK LINKS</h3>
+              <ul className="space-y-1">
+                <li><a href="#" className="hover:underline">Almora Branch</a></li>
+                <li><a href="#" className="hover:underline">Dharanaula Branch</a></li>
               </ul>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg">ACCREDITATION & MEMBERSHIPS</h3>
-              <div className="flex flex-wrap gap-4 items-center justify-start">
-                <div className="p-2 rounded-lg flex items-center justify-center h-16 w-16">
-                  <img
-                    className="h-full object-contain"
-                    src="./CBSE-Black.svg"
-                    alt="CBSE"
-                  />
+            {/* Curriculum & Accreditation */}
+            <div>
+              <h3 className="font-semibold text-base mb-2">CURRICULUM & ACCREDITATION</h3>
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12">
+                  <img src="./CBSE-Black.svg" alt="CBSE Affiliated" className="h-full w-full object-contain" />
                 </div>
-                <div className="p-2 rounded-lg flex items-center justify-center h-16 w-16">
-                  <img
-                    className="h-full object-contain invert"
-                    src="./NCERT-Black.svg"
-                    alt="NCERT"
-                  />
+                <div className="h-12 w-12 invert">
+                  <img src="./NCERT-Black.svg" alt="Follows NCERT Curriculum" className="h-full w-full object-contain" />
                 </div>
               </div>
+              <p className="mt-2 text-gray-300 text-xs">
+                Affiliated to CBSE | Follows NCERT Curriculum
+              </p>
             </div>
 
-            <div className="mb-6">
-              <h3 className="font-bold text-lg mb-4">Like. Follow. Friend.</h3>
-              <p>@springdalesschoolalmora</p>
-              <div className="flex items-center space-x-4 mb-4">
-                <a href="#" className="text-[#FFFFFF] hover:text-gray-300">
-                  <FaFacebook size={24} />
-                </a>
-                <a href="#" className="text-[#FFFFFF] hover:text-gray-300">
-                  <FaInstagram size={24} />
-                </a>
-                <a href="#" className="text-[#FFFFFF] hover:text-gray-300">
-                  <FaWhatsapp size={24} />
-                </a>
-                <a href="#" className="text-[#FFFFFF] hover:text-gray-300">
-                  <FaYoutube size={24} />
+            {/* Social Section + Email */}
+            <div>
+              <h3 className="font-semibold text-base mb-2">FOLLOW US</h3>
+              <p className="mb-3">@springdalesschoolalmora</p>
+              <div className="flex space-x-4 mb-4">
+                <a href="#" className="hover:text-gray-300"><FaFacebook size={20} /></a>
+                <a href="#" className="hover:text-gray-300"><FaInstagram size={20} /></a>
+                <a href="#" className="hover:text-gray-300"><FaWhatsapp size={20} /></a>
+                <a href="#" className="hover:text-gray-300"><FaYoutube size={20} /></a>
+              </div>
+              {/* Email */}
+              <div className="flex items-center space-x-2">
+                <IoIosMail size={20} className="text-blue-200" />
+                <a
+                  href="mailto:principal.springdalesalmora@gmail.com"
+                  className="hover:underline"
+                >
+                  principal.springdalesalmora@gmail.com
                 </a>
               </div>
             </div>
@@ -81,9 +84,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="bg-[#FFFFFF] text-[#3A4852] text-center py-4">
+        {/* Bottom Bar */}
+        <div className="bg-white text-[#3A4852] text-center py-4 text-xs">
           <div className="container mx-auto px-4">
-            &copy; School of Almora | Privacy | Cookie Policy | Terms of Use
+            &copy; {currentYear} Springdales School, Almora. All rights reserved. | Developed & Maintained By{' '}
+            <Link href="https://www.linkedin.com/in/ankit-suyal-b37789344/" className="hover:underline">
+              Ankit Suyal
+            </Link>
           </div>
         </div>
       </footer>

@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { IoMenu, IoClose, IoChevronDown } from "react-icons/io5"; // Added IoChevronDown
-import { FaPhoneAlt, FaSchool, FaFlag } from "react-icons/fa";
+import { IoMenu, IoClose, IoChevronDown } from "react-icons/io5"; 
+import { IoIosMail } from "react-icons/io";
+import { FaSchool, FaFlag } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -97,10 +98,10 @@ function Header() {
 
           {/* Left - Contact */}
           <div className="hidden md:flex items-center gap-2 whitespace-nowrap text-blue-200 font-medium">
-            <FaPhoneAlt className="text-blue-200" />
-            <Link href="tel:+919876543210" className="hover:underline">
-              +91-9876543210
-            </Link>
+            <IoIosMail size={20} className="text-blue-200" />
+            <a href="mailto:principal.springdalesalmora@gmail.com" className="hover:underline">
+              principal.springdalesalmora@gmail.com
+            </a>
           </div>
 
           {/* Center - Marquee */}
@@ -132,7 +133,7 @@ function Header() {
           {/* Right - Affiliation */}
           <div className="hidden md:flex items-center gap-2 text-white font-medium whitespace-nowrap">
             <FaSchool className="text-white" />
-            CBSE Affiliation No.: 1234567
+            CBSE Affiliation No.: 3530151
           </div>
         </div>
       </div>
@@ -214,7 +215,7 @@ function Header() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-4xl text-white focus:outline-none">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-4xl text-[#01A6CF] focus:outline-none">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={mobileOpen ? "close" : "menu"}
