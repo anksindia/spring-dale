@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image"; // ✅ Added for Next.js optimized images
 import PageHeading from "../components/PageHeading";
 import {
   FaGraduationCap,
@@ -18,13 +19,9 @@ import {
   FaHeart,
   FaLightbulb,
   FaSmileBeam,
-} from "react-icons/fa"; // Import relevant icons
+} from "react-icons/fa";
 
-const schoolImages = [
-  "/photo.webp",
-  "/photo2.webp",
-  "/photo3.webp",
-];
+const schoolImages = ["/photo.webp", "/photo2.webp", "/photo3.webp"];
 
 // Simple Image Carousel Component
 function ImageCarousel({ images }) {
@@ -33,7 +30,7 @@ function ImageCarousel({ images }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
     return () => clearInterval(timer);
   }, [images.length]);
 
@@ -76,13 +73,13 @@ export default function About() {
       <section className="px-6 md:px-24 py-14 flex flex-col gap-20 text-gray-800 bg-[#f0f9ff]">
         {/* Welcome Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <ImageCarousel images={schoolImages} /> {/* Using the new carousel */}
+          <ImageCarousel images={schoolImages} />
           <div>
             <h2 className="text-4xl font-extrabold mb-6 text-[#01A6CF]">
               Welcome to Spring Dales Almora
             </h2>
             <p className="text-lg leading-relaxed text-gray-700">
-              Nestled in the serene Kumaon Hills, **Spring Dales Almora** is
+              Nestled in the serene Kumaon Hills, <strong>Spring Dales Almora</strong> is
               where tradition meets innovation. Our vibrant campus, caring
               teachers, and engaging programs empower students to thrive
               intellectually, emotionally, and socially.
@@ -90,70 +87,26 @@ export default function About() {
           </div>
         </div>
 
-        {/* Quick Facts with Icons */}
+        {/* Quick Facts */}
         <div className="mt-4">
           <h2 className="text-3xl font-bold text-center text-[#0077B6] mb-10">
             Quick Facts
           </h2>
           <div className="grid md:grid-cols-2 gap-12 text-md bg-white p-10 rounded-2xl shadow-xl">
             <div className="flex flex-col gap-4">
-              <Fact
-                icon={<FaGraduationCap className="text-[#01A6CF]" />}
-                title="Grades"
-                value="Nursery – Class 12"
-              />
-              <Fact
-                icon={<FaUsers className="text-[#01A6CF]" />}
-                title="Enrollment"
-                value="300+ students"
-              />
-              <Fact
-                icon={<FaChalkboardTeacher className="text-[#01A6CF]" />}
-                title="Faculty"
-                value="40+ teachers & staff"
-              />
-              <Fact
-                icon={<FaSchool className="text-[#01A6CF]" />}
-                title="Campus"
-                value="Lush green Almora-based campus"
-              />
-              <Fact
-                icon={<FaLanguage className="text-[#01A6CF]" />}
-                title="Medium"
-                value="English"
-              />
-              <Fact
-                icon={<FaBookOpen className="text-[#01A6CF]" />}
-                title="Curriculum"
-                value="CBSE + Experiential Learning"
-              />
+              <Fact icon={<FaGraduationCap className="text-[#01A6CF]" />} title="Grades" value="Nursery – Class 12" />
+              <Fact icon={<FaUsers className="text-[#01A6CF]" />} title="Enrollment" value="300+ students" />
+              <Fact icon={<FaChalkboardTeacher className="text-[#01A6CF]" />} title="Faculty" value="40+ teachers & staff" />
+              <Fact icon={<FaSchool className="text-[#01A6CF]" />} title="Campus" value="Lush green Almora-based campus" />
+              <Fact icon={<FaLanguage className="text-[#01A6CF]" />} title="Medium" value="English" />
+              <Fact icon={<FaBookOpen className="text-[#01A6CF]" />} title="Curriculum" value="CBSE + Experiential Learning" />
             </div>
             <div className="flex flex-col gap-4">
-              <Fact
-                icon={<FaClock className="text-[#01A6CF]" />}
-                title="School Hours"
-                value="9:00 AM – 3:00 PM (Mon–Fri)"
-              />
-              <Fact
-                icon={<FaCalendarAlt className="text-[#01A6CF]" />}
-                title="After School Programs"
-                value="Available till 5:30 PM"
-              />
-              <Fact
-                icon={<FaMoneyBillWave className="text-[#01A6CF]" />}
-                title="Fee Structure"
-                value="Affordable & transparent"
-              />
-              <Fact
-                icon={<FaBus className="text-[#01A6CF]" />}
-                title="Transport"
-                value="Covers major Almora routes"
-              />
-              <Fact
-                icon={<FaHandHoldingUsd className="text-[#01A6CF]" />}
-                title="Financial Aid"
-                value="Scholarships & Need-based Aid"
-              />
+              <Fact icon={<FaClock className="text-[#01A6CF]" />} title="School Hours" value="9:00 AM – 3:00 PM (Mon–Fri)" />
+              <Fact icon={<FaCalendarAlt className="text-[#01A6CF]" />} title="After School Programs" value="Available till 5:30 PM" />
+              <Fact icon={<FaMoneyBillWave className="text-[#01A6CF]" />} title="Fee Structure" value="Affordable & transparent" />
+              <Fact icon={<FaBus className="text-[#01A6CF]" />} title="Transport" value="Covers major Almora routes" />
+              <Fact icon={<FaHandHoldingUsd className="text-[#01A6CF]" />} title="Financial Aid" value="Scholarships & Need-based Aid" />
             </div>
           </div>
         </div>
@@ -161,15 +114,14 @@ export default function About() {
         {/* Our Story */}
         <div className="grid md:grid-cols-2 gap-10 items-center border-t pt-10">
           <div className="flex justify-center items-center w-40 h-auto mx-auto md:mx-0 text-blue-500">
-            <img src="./celebrate.png" alt="Celebration Badge" />{" "}
-            {/* Replaced image with icon */}
+            <Image src="/celebrate.png" alt="Celebration Badge" width={120} height={120} /> {/* ✅ Optimized */}
           </div>
           <div className="flex flex-col gap-5 text-md leading-relaxed">
             <h2 className="text-3xl font-bold text-[#01A6CF]">
               Our Story: A Journey of Growth
             </h2>
             <p>
-              **Spring Dales Almora** began with a dream—to deliver world-class
+              <strong>Spring Dales Almora</strong> began with a dream—to deliver world-class
               education in the serene Himalayan foothills. From a small group of
               dreamers, we’ve grown into a thriving school community known for
               our academic excellence and warmth.
@@ -182,7 +134,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Explore More Links */}
+        {/* Explore More */}
         <div className="bg-gradient-to-tr from-[#01A6CF] to-[#0077B6] text-white text-center py-12 rounded-3xl shadow-xl">
           <h3 className="text-3xl font-bold mb-6">
             Dive Deeper into Spring Dales
@@ -205,15 +157,14 @@ export default function About() {
           </div>
         </div>
 
-        {/* Closing Quote */}
+        {/* Closing Quote — ✅ Fixed unescaped quotes */}
         <div className="bg-gradient-to-r from-blue-700 to-blue-900 text-center py-12 rounded-xl shadow-xl">
           <p className="text-xl md:text-2xl font-medium text-blue-200 px-4">
             Our journey in the hills began with a profound question:
           </p>
           <p className="text-2xl md:text-3xl font-extrabold text-yellow-300 mt-4 px-4 flex items-center justify-center gap-2">
             <FaLightbulb className="text-yellow-300" />
-            "What if school could be a realm overflowing with love, joyous
-            laughter, and boundless discovery?"
+            {"What if school could be a realm overflowing with love, joyous laughter, and boundless discovery?"}
             <FaSmileBeam className="text-yellow-300" />
           </p>
         </div>

@@ -1,60 +1,79 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 
 const InfiniteImageCards = ({
   items,
-  direction = "left",
-  speed = "fast",
+  direction = "left", // 'left' or 'right'
+  speed = "medium",    // 'slow' | 'medium' | 'fast'
   pauseOnHover = true,
   className = "",
 }) => {
   const containerRef = useRef(null);
-  const scrollerRef = useRef(null);
-  const [start, setStart] = useState(false);
+  const controls = useAnimation();
+
+  const speedMap = {
+    slow: 80,
+    medium: 40,
+    fast: 20,
+  };
+
+  const duration = speedMap[speed] || 40;
+  const xFrom = direction === "left" ? 0 : "-50%";
+  const xTo = direction === "left" ? "-50%" : 0;
+
+  const handleMouseEnter = () => {
+    if (pauseOnHover) controls.stop();
+  };
+
+  const handleMouseLeave = () => {
+    if (pauseOnHover) {
+      controls.start({
+        x: [xFrom, xTo],
+        transition: {
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "linear",
+            duration,
+          },
+        },
+      });
+    }
+  };
 
   useEffect(() => {
-    if (!containerRef.current || !scrollerRef.current) return;
-
-    const scrollerContent = Array.from(scrollerRef.current.children);
-    scrollerContent.forEach((item) => {
-      const clone = item.cloneNode(true);
-      scrollerRef.current.appendChild(clone);
+    controls.start({
+      x: [xFrom, xTo],
+      transition: {
+        x: {
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "linear",
+          duration,
+        },
+      },
     });
-
-    containerRef.current.style.setProperty(
-      "--animation-direction",
-      direction === "left" ? "forwards" : "reverse"
-    );
-
-    const duration =
-      speed === "fast" ? "20s" : speed === "slow" ? "80s" : "40s";
-    containerRef.current.style.setProperty("--animation-duration", duration);
-
-    setStart(true);
-  }, []);
-
-
+  }, [direction, duration]);
 
   return (
     <div
       ref={containerRef}
-      className={`scroller relative z-20 max-w-7xl overflow-hidden  
-        ${className}`}   // [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`relative overflow-hidden max-w-7xl w-full ${className}`}
     >
-      <ul
-        ref={scrollerRef}
-        className={`flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4
-          ${start ? "animate-scroll" : ""}
-          ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""}
-        `}
+      <motion.ul
+        className="flex gap-4 w-max"
+        animate={controls}
+        initial={{ x: xFrom }}
       >
-        {items.map((item, index) => (
+        {[...items, ...items].map((item, index) => (
           <li
             key={index}
-            className="relative w-[300px] max-w-full shrink-0 rounded-xl border border-gray-300 
-              bg-white  px-4 py-3 flex flex-col items-center shadow-md "
+            className="w-[300px] shrink-0 rounded-xl border border-gray-300 bg-white px-4 py-3 flex flex-col items-center shadow-md"
           >
             <div className="relative w-full h-40 rounded-md overflow-hidden">
               <Image
@@ -64,12 +83,12 @@ const InfiniteImageCards = ({
                 className="object-cover"
               />
             </div>
-            <span className="mt-3 text-sm font-medium text-center text-gray-800 ">
+            <span className="mt-3 text-sm font-medium text-center text-gray-800">
               {item.label}
             </span>
           </li>
         ))}
-      </ul>
+      </motion.ul>
     </div>
   );
 };
