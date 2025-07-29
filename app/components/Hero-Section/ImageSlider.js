@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const images = [
   {
-    src: "/g.gif",
+    src: "/photo7.webp",
     showOverlay: true,
     title: "Welcome to Spring Dales",
     caption: "",

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { IoMenu, IoClose, IoChevronDown } from "react-icons/io5"; 
+import { IoMenu, IoClose, IoChevronDown } from "react-icons/io5";
 import { IoIosMail } from "react-icons/io";
 import { FaSchool, FaFlag } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
@@ -142,9 +142,11 @@ function Header() {
       <header className="w-full sticky top-0 z-50 font-sans bg-white shadow-xl">
         <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-3 flex items-center justify-between text-[#01A6CF]">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <img src="/logo.png" alt="School Logo" className="h-16 w-auto object-contain filter drop-shadow-lg" />
+          {/* Logo and School Name (Visible on Mobile, alongside Logo) */}
+          <Link href="/" className="flex items-center gap-2"> {/* Added gap for spacing */}
+            <img src="/logo.png" alt="Spring Dales School Almora Logo" className="h-16 w-auto object-contain filter drop-shadow-lg" />
+            {/* Added school name for mobile view */}
+            <span className="md:hidden text-lg font-bold text-[#00ccff]">Spring Dales School Almora</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -152,7 +154,6 @@ function Header() {
             <nav className="flex gap-8 font-semibold text-base">
               {navLinks.map((link, idx) => (
                 <div key={idx} className="relative group">
-                  {/* IMPORTANT: Link is now directly wrapped by motion.div */}
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
