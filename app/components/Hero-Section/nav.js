@@ -40,7 +40,7 @@ const navLinks = [
     path: "/approach",
     submenu: [
       { title: "AI in Education", path: "/approach/ai" },
-      { title: "Experiential Learning", "path": "/approach/experiential" },
+      { title: "Experiential Learning", path: "/approach/experiential" },
       { title: "Activity-Based Learning", path: "/approach/activity-based" },
     ],
   },
@@ -93,7 +93,7 @@ function Header() {
   return (
     <>
       {/* Top Bar */}
-      <div className="w-full bg-gradient-to-br from-[#01A6CF] to-[#0077B6] text-sm text-white shadow-sm overflow-hidden z-[10] relative">
+      <div className="w-full bg-gradient-to-br from-[#01A6CF] to-[#0077B6] text-sm md:text-xs lg:text-sm text-white shadow-sm overflow-hidden z-[10] relative">
         <div className="max-w-[1400px] mx-auto px-4 flex flex-wrap justify-between items-center py-2 gap-2 relative">
 
           {/* Left - Contact */}
@@ -105,7 +105,7 @@ function Header() {
           </div>
 
           {/* Center - Marquee */}
-          <div className="relative w-full max-w-full md:max-w-[50%] mx-auto overflow-hidden text-yellow-300 font-semibold whitespace-nowrap">
+          <div className="relative w-full max-w-full md:max-w-[50%] mx-auto overflow-hidden text-yellow-300 font-semibold text-xs md:text-[11px] lg:text-sm  whitespace-nowrap">
             <motion.div
               className="flex gap-10 items-center"
               animate={{ x: ["100%", "-100%"] }}
@@ -139,8 +139,8 @@ function Header() {
       </div>
 
       {/* Header/Nav */}
-      <header className="w-full sticky flex flex-wrap top-0 z-50 font-sans bg-white shadow-xl">
-        <div className="w-full mx-auto px-4 md:px-10 py-3 flex flex-wrap items-center justify-between text-[#01A6CF]">
+      <header className="w-full sticky top-0 z-50 font-sans bg-white shadow-xl">
+        <div className="max-w-[1400px] mx-auto px-3 md:px-6 lg:px-10 py-2 md:py-3 flex items-center justify-between text-[#01A6CF]">
 
           {/* Logo and School Name (Visible on Mobile, alongside Logo) */}
           <Link href="/" className="flex items-center gap-2"> {/* Added gap for spacing */}
@@ -150,10 +150,8 @@ function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          {/* Changed 'flex-1' to allow nav and buttons to shrink/grow independently better */}
-          <div className="hidden md:flex items-center justify-between md:ml-4 lg:ml-6 xl:ml-10 flex-grow"> {/* Adjusted margin-left and added flex-grow */}
-            {/* Adjusted gap and text sizes for better responsiveness */}
-            <nav className="flex gap-2 lg:gap-3 xl:gap-4 font-medium md:text-xs lg:text-sm xl:text-base"> {/* Adjusted gap and font sizes */}
+          <div className="hidden md:flex items-center justify-between flex-1 ml-10">
+            <nav className="flex gap-4 md:gap-6 lg:gap-8 font-medium text-sm md:text-[15px] lg:text-base">
               {navLinks.map((link, idx) => (
                 <div key={idx} className="relative group">
                   <motion.div
@@ -169,7 +167,7 @@ function Header() {
                   </motion.div>
                   {link.submenu.length > 0 && (
                     <motion.div
-                      className="absolute top-full left-0 mt-3 bg-white text-[#01A6CF] shadow-2xl w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20 overflow-hidden"
+                      className="absolute top-full left-0 mt-3 bg-white text-[#01A6CF] shadow-2xl  w-44 md:w-56 lg:w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20 overflow-hidden "
                     >
                       <ul className="flex flex-col gap-2 p-4 text-sm">
                         {link.submenu.map((item, i) => (
@@ -189,15 +187,15 @@ function Header() {
               ))}
             </nav>
 
-            {/* Right Links - Adjusted gap, text size, and padding for buttons */}
-            <div className="flex gap-2 md:gap-3 lg:gap-4 text-sm md:text-xs lg:text-base ml-4 lg:ml-6 xl:ml-8"> {/* Adjusted gap, text sizes, and margin-left */}
+            {/* Right Links */}
+            <div className="flex gap-6 text-sm ml-8">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
                   href="/notice-board"
-                  className="px-2.5 py-1 lg:px-3 lg:py-1.5 rounded-full bg-yellow-400 text-blue-900 font-bold shadow-md hover:bg-yellow-300 transform hover:scale-105 transition-all duration-200 whitespace-nowrap"
+                  className="px-5 py-2 rounded-full bg-yellow-400 text-blue-900 font-bold shadow-md hover:bg-yellow-300 transform hover:scale-105 transition-all duration-200"
                 >
                   Notice Board
                 </Link>
@@ -208,7 +206,7 @@ function Header() {
               >
                 <Link
                   href="/disclosure"
-                  className="px-2.5 py-1 lg:px-3 lg:py-1.5 rounded-full border border-[#01A6CF] text-[#01A6CF] font-bold hover:bg-[#86d7ec] hover:text-white transform hover:scale-105 transition-all duration-200 whitespace-nowrap"
+                  className="px-3 py-[6px] md:px-4 md:py-2 rounded-full text-sm md:text-base border border-[#01A6CF] text-[#01A6CF] font-bold hover:bg-[#86d7ec] hover:text-white transform hover:scale-105 transition-all duration-200"
                 >
                   Mandatory Public Disclosure
                 </Link>
@@ -218,7 +216,7 @@ function Header() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-4xl text-[#01A6CF] focus:outline-none">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-2xl md:text-3xl text-[#01A6CF] focus:outline-none">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={mobileOpen ? "close" : "menu"}
