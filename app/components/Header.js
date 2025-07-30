@@ -242,7 +242,7 @@ function Header() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="md:hidden bg-gradient-to-br from-[#01A6CF] to-[#0077B6] px-4 pb-4 text-white shadow-inner"
+              className="md:hidden w-full bg-gradient-to-br from-[#01A6CF] to-[#0077B6] px-4 pb-4 text-white shadow-inner"
             >
               <nav className="flex flex-col gap-4 py-2">
                 <motion.div
