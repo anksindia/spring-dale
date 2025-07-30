@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FaPlus, FaSchoolFlag, FaPenToSquare } from "react-icons/fa6";
-import { IoIosChatbubbles } from "react-icons/io";
+import { IoIosCall } from "react-icons/io";
 
 const ButtonItem = ({ Icon, label, bgColor }) => (
   <div
@@ -21,7 +21,7 @@ const QuickAccessFloating = () => {
         <div className="flex flex-col items-start gap-3 transition-all duration-300">
           <ButtonItem Icon={FaSchoolFlag} label="Visit" bgColor="bg-gradient-to-br from-emerald-500 via-teal-500 to-teal-700" />
           <ButtonItem Icon={FaPenToSquare} label="Apply" bgColor="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600" />
-          <ButtonItem Icon={IoIosChatbubbles} label="AI" bgColor="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800" />
+          <ButtonItem Icon={IoIosCall} label="Call" bgColor="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800" />
         </div>
       )}
       <button
