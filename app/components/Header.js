@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { IoMenu, IoClose, IoChevronDown } from "react-icons/io5";
 import { IoIosMail } from "react-icons/io";
-import { FaSchool, FaFlag } from "react-icons/fa";
+import { FaGraduationCap, FaBullhorn, FaBookOpen } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -40,7 +40,7 @@ const navLinks = [
     path: "/approach",
     submenu: [
       { title: "AI in Education", path: "/approach/ai" },
-      { title: "Experiential Learning", "path": "/approach/experiential" },
+      { title: "Experiential Learning", path: "/approach/experiential" },
       { title: "Activity-Based Learning", path: "/approach/activity-based" },
     ],
   },
@@ -68,9 +68,9 @@ const navLinks = [
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
+  const [hoveredSubmenu, setHoveredSubmenu] = useState(null);
   const pathname = usePathname();
 
-  // Framer Motion variants for mobile menu
   const mobileMenuVariants = {
     hidden: { height: 0, opacity: 0 },
     visible: { height: "auto", opacity: 1, transition: { duration: 0.3, staggerChildren: 0.05 } },
@@ -83,7 +83,6 @@ function Header() {
   };
 
   const isActive = (path) => {
-    // Special handling for the root path to ensure it only matches exactly if not a sub-path
     if (path === '/') {
       return pathname === '/';
     }
@@ -92,133 +91,130 @@ function Header() {
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="w-full bg-gradient-to-br from-[#01A6CF] to-[#0077B6] text-sm text-white shadow-sm overflow-hidden z-[10] relative">
-        <div className="max-w-[1400px] mx-auto px-4 flex flex-wrap justify-between items-center py-2 gap-2 relative">
+      {/* Top Bar - Responsive adjustments for padding and content visibility */}
+      <div className="w-full bg-[#01A6CF] text-xs sm:text-sm text-white shadow-md overflow-hidden z-[10] relative">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-wrap justify-between items-center py-2 gap-2 relative">
 
-          {/* Left - Contact */}
-          <div className="hidden md:flex items-center gap-2 whitespace-nowrap text-blue-200 font-medium">
+          {/* Left - Contact (Hidden on screens smaller than lg) */}
+          <div className="hidden lg:flex items-center gap-2 whitespace-nowrap text-blue-200 font-medium">
             <IoIosMail size={20} className="text-blue-200" />
-            <a href="mailto:principal.springdalesalmora@gmail.com" className="hover:underline">
+            <a href="mailto:principal.springdalesalmora@gmail.com" className="hover:underline text-gray-200">
               principal.springdalesalmora@gmail.com
             </a>
           </div>
 
-          {/* Center - Marquee */}
-          <div className="relative w-full max-w-full md:max-w-[50%] mx-auto overflow-hidden text-yellow-300 font-semibold whitespace-nowrap">
+          {/* Center - Marquee (Adjusted width for responsiveness) */}
+          <div className="relative w-full lg:w-auto lg:flex-1 lg:max-w-[50%] mx-auto overflow-hidden text-[#FFA500] font-semibold whitespace-nowrap text-center lg:text-left">
             <motion.div
-              className="flex gap-10 items-center"
+              className="flex gap-10 items-center justify-center lg:justify-start"
               animate={{ x: ["100%", "-100%"] }}
               transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
             >
-              <span className="flex items-center gap-2">
-                <FaFlag className="text-yellow-400" />
-                Admissions Open for 2025–26! Enroll Now!
-              </span>
-              <span className="flex items-center gap-2">
-                <FaFlag className="text-yellow-400" />
-                Limited Seats Available!
-              </span>
-              <span className="flex items-center gap-2">
-                <FaFlag className="text-yellow-400" />
-                Admissions Open for 2025–26! Enroll Now!
-              </span>
-              <span className="flex items-center gap-2">
-                <FaFlag className="text-yellow-400" />
-                Limited Seats Available!
-              </span>
+              <span className="flex items-center gap-2 text-white uppercase">
+  <FaGraduationCap className="text-white" />
+  Admissions Open for 2025–26! Enroll Now!
+</span>
+<span className="flex items-center gap-2 text-white uppercase">
+  <FaBullhorn className="text-white" />
+  Limited Seats Available!
+</span>
+<span className="flex items-center gap-2 text-white uppercase">
+  <FaGraduationCap className="text-white" />
+  Admissions Open for 2025–26! Enroll Now!
+</span>
+<span className="flex items-center gap-2 text-white uppercase">
+  <FaBullhorn className="text-white" />
+  Limited Seats Available!
+</span>
             </motion.div>
           </div>
 
-          {/* Right - Affiliation */}
-          <div className="hidden md:flex items-center gap-2 text-white font-medium whitespace-nowrap">
-            <FaSchool className="text-white" />
+          {/* Right - Affiliation (Hidden on screens smaller than lg) */}
+          <div className="hidden lg:flex items-center gap-2 text-white font-medium whitespace-nowrap">
+            <FaBookOpen className="text-white" />
             CBSE Affiliation No.: 3530151
           </div>
         </div>
       </div>
 
-      {/* Header/Nav */}
-      <header className="w-full sticky flex flex-wrap top-0 z-50 font-sans bg-white shadow-xl">
-        <div className="w-full mx-auto px-4 md:px-10 py-3 flex flex-wrap items-center justify-between text-[#01A6CF]">
+      {/* Main Header/Nav - Responsive padding and element visibility */}
+      <header className="w-full sticky top-0 z-50 font-sans bg-white shadow-lg">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-10 py-3 flex items-center justify-between text-[#01A6CF]">
 
-          {/* Logo and School Name (Visible on Mobile, alongside Logo) */}
-          <Link href="/" className="flex items-center gap-2"> {/* Added gap for spacing */}
-            <img src="/logo.png" alt="Spring Dales School Almora Logo" className="h-12 md:h-14 lg:h-16 w-auto object-contain filter drop-shadow-lg" />
-            {/* Added school name for mobile view */}
-            <span className="md:hidden text-lg font-bold text-[#00ccff]">Spring Dales School Almora</span>
+          {/* Logo and School Name (Responsive sizing and visibility) */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-3">
+            <img src="/logo.png" alt="Spring Dales School Almora Logo" className="h-10 sm:h-12 lg:h-14 w-auto object-contain" />
+            <span className="lg:hidden text-base sm:text-lg font-bold text-[#01A6CF]">Spring Dales School Almora</span>
           </Link>
 
-          {/* Desktop Nav */}
-          {/* Changed 'flex-1' to allow nav and buttons to shrink/grow independently better */}
-          <div className="hidden md:flex items-center justify-between md:ml-4 lg:ml-6 xl:ml-10 flex-grow"> {/* Adjusted margin-left and added flex-grow */}
-            {/* Adjusted gap and text sizes for better responsiveness */}
-            <nav className="flex gap-2 lg:gap-3 xl:gap-4 font-medium md:text-xs lg:text-sm xl:text-base"> {/* Adjusted gap and font sizes */}
+          {/* Desktop Nav and Buttons (Hidden on screens smaller than lg) */}
+          <div className="hidden lg:flex items-center justify-end flex-grow">
+            <nav className="flex gap-4 xl:gap-6 font-semibold text-sm xl:text-base">
               {navLinks.map((link, idx) => (
-                <div key={idx} className="relative group">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                <div
+                  key={idx}
+                  className="relative"
+                  onMouseEnter={() => setHoveredSubmenu(idx)}
+                  onMouseLeave={() => setHoveredSubmenu(null)}
+                >
+                  <Link
+                    href={link.path}
+                    className={`cursor-pointer flex items-center gap-1 transition-colors duration-300 relative ${isActive(link.path) ? 'text-[#01A6CF]' : 'text-[#01A6CF] hover:text-[#01A6CF]'}`}
                   >
-                    <Link
-                      href={link.path}
-                      className={`cursor-pointer flex items-center gap-1 hover:text-yellow-400 transition-colors duration-300 transform hover:-translate-y-0.5 ${isActive(link.path) ? 'text-yellow-400' : ''}`}
-                    >
-                      {link.title}
-                    </Link>
-                  </motion.div>
+                    {link.title}
+                    <motion.span
+                      className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#01A6CF] transform origin-left transition-transform duration-300 ease-out ${isActive(link.path) || hoveredSubmenu === idx ? 'scale-x-100' : 'scale-x-0'}`}
+                      initial={false}
+                    />
+                  </Link>
                   {link.submenu.length > 0 && (
-                    <motion.div
-                      className="absolute top-full left-0 mt-3 bg-white text-[#01A6CF] shadow-2xl w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20 overflow-hidden"
-                    >
-                      <ul className="flex flex-col gap-2 p-4 text-sm">
-                        {link.submenu.map((item, i) => (
-                          <li key={i}>
-                            <Link
-                              href={item.path}
-                              className={`block py-1 px-2 rounded hover:bg-[#01A6CF] hover:text-yellow-400 transition-all duration-200 ${isActive(item.path) ? 'bg-blue-700 text-yellow-400' : ''}`}
-                            >
-                              {item.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
+                    <AnimatePresence>
+                      {hoveredSubmenu === idx && (
+                        <motion.div
+                          className="absolute top-full left-0 mt-4 bg-white text-[#01A6CF] shadow-xl rounded-md w-48 xl:w-60 z-20 overflow-hidden"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ul className="flex flex-col gap-2 p-3 xl:p-4 text-sm">
+                            {link.submenu.map((item, i) => (
+                              <li key={i}>
+                                <Link
+                                  href={item.path}
+                                  className={`block py-1 px-2 rounded hover:bg-[#01A6CF] hover:text-white transition-all duration-200 ${isActive(item.path) ? 'bg-[#01A6CF] text-white' : ''}`}
+                                >
+                                  {item.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   )}
                 </div>
               ))}
             </nav>
-
-            {/* Right Links - Adjusted gap, text size, and padding for buttons */}
-            <div className="flex gap-2 md:gap-3 lg:gap-4 text-sm md:text-xs lg:text-base ml-4 lg:ml-6 xl:ml-8"> {/* Adjusted gap, text sizes, and margin-left */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <div className="flex gap-3 ml-6 xl:ml-8">
+              <Link
+                href="/disclosure"
+                className="px-3 py-1.5 xl:px-4 xl:py-2 border border-gray-300 rounded-md text-[#01A6CF] hover:bg-gray-100 transition-colors whitespace-nowrap text-xs xl:text-sm font-semibold"
               >
-                <Link
-                  href="/notice-board"
-                  className="px-2.5 py-1 lg:px-3 lg:py-1.5 rounded-full bg-yellow-400 text-blue-900 font-bold shadow-md hover:bg-yellow-300 transform hover:scale-105 transition-all duration-200 whitespace-nowrap"
-                >
-                  Notice Board
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                Public Disclosure
+              </Link>
+              <Link
+                href="/notice-board"
+                className="px-3 py-1.5 xl:px-4 xl:py-2 rounded-md bg-[#FFA500] text-white shadow-md hover:bg-[#e69500] transition-colors whitespace-nowrap text-xs xl:text-sm font-semibold"
               >
-                <Link
-                  href="/disclosure"
-                  className="px-2.5 py-1 lg:px-3 lg:py-1.5 rounded-full border border-[#01A6CF] text-[#01A6CF] font-bold hover:bg-[#86d7ec] hover:text-white transform hover:scale-105 transition-all duration-200 whitespace-nowrap"
-                >
-                  Mandatory Public Disclosure
-                </Link>
-              </motion.div>
+                Notice Board
+              </Link>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-4xl text-[#01A6CF] focus:outline-none">
+          {/* Mobile Menu Button (Visible on screens smaller than lg) */}
+          <div className="lg:hidden">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-3xl sm:text-4xl text-[#01A6CF] focus:outline-none">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={mobileOpen ? "close" : "menu"}
@@ -234,7 +230,7 @@ function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (Full-width overlay) */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -242,44 +238,37 @@ function Header() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="md:hidden w-full bg-gradient-to-br from-[#01A6CF] to-[#0077B6] px-4 pb-4 text-white shadow-inner"
+              className="lg:hidden w-full bg-[#01A6CF] px-4 pb-4 text-white shadow-inner"
             >
-              <nav className="flex flex-col gap-4 py-2">
-                <motion.div
-                  variants={mobileLinkVariants}
-                >
+              <nav className="flex flex-col gap-3 py-4">
+                <motion.div variants={mobileLinkVariants}>
                   <Link
                     href="/notice-board"
-                    className="block px-4 py-2 rounded-md bg-yellow-400 text-blue-900 font-semibold text-center hover:bg-yellow-300 transition-colors"
-                    onClick={() => setMobileOpen(false)} // Close menu on click
+                    className="block px-4 py-2 rounded-md bg-[#FFA500] text-black font-semibold text-center hover:bg-[#e69500] transition-colors text-sm sm:text-base"
+                    onClick={() => setMobileOpen(false)}
                   >
                     Notice Board
                   </Link>
                 </motion.div>
-                <motion.div
-                  variants={mobileLinkVariants}
-                >
+                <motion.div variants={mobileLinkVariants}>
                   <Link
                     href="/disclosure"
-                    className="block px-4 py-2 rounded-md border border-white text-center hover:bg-white hover:text-blue-900 transition-colors"
-                    onClick={() => setMobileOpen(false)} // Close menu on click
+                    className="block px-4 py-2 rounded-md border border-gray-400 text-center hover:bg-white hover:text-[#01A6CF] transition-colors font-semibold text-sm sm:text-base"
+                    onClick={() => setMobileOpen(false)}
                   >
                     Mandatory Public Disclosure
                   </Link>
                 </motion.div>
                 {navLinks.map((link, idx) => (
                   <motion.div key={idx} variants={mobileLinkVariants} className="flex flex-col">
-                    <div className="flex justify-between items-center w-full py-2 px-4 rounded-md font-medium text-left hover:bg-blue-700 transition-colors">
-                      {/* Separate Link and Submenu Toggle for Mobile */}
+                    <div className="flex justify-between items-center w-full py-2 px-4 rounded-md font-medium text-left hover:bg-[#0077B6] transition-colors text-sm sm:text-base">
                       <Link
                         href={link.path}
-                        className={`flex-grow ${isActive(link.path) ? 'text-[#FFD700]' : ''}`}
+                        className={`flex-grow ${isActive(link.path) ? 'text-white' : ''}`}
                         onClick={() => {
-                          // Close mobile menu if it's a direct link with no submenu
                           if (link.submenu.length === 0) {
                             setMobileOpen(false);
                           }
-                          // This onClick handler is defensive; Link should handle navigation
                         }}
                       >
                         {link.title}
@@ -287,13 +276,13 @@ function Header() {
                       {link.submenu.length > 0 && (
                         <motion.span
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent Link click from propagating
+                            e.stopPropagation();
                             setOpenSubmenu(openSubmenu === idx ? null : idx);
                           }}
                           initial={false}
                           animate={{ rotate: openSubmenu === idx ? 180 : 0 }}
                           transition={{ duration: 0.2 }}
-                          className="ml-2 p-1 cursor-pointer text-xl" // Increased icon size slightly
+                          className="ml-2 p-1 cursor-pointer text-lg sm:text-xl"
                         >
                           <IoChevronDown />
                         </motion.span>
@@ -306,14 +295,14 @@ function Header() {
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="pl-8 mt-2 text-sm text-white flex flex-col gap-2 overflow-hidden"
+                          className="pl-6 sm:pl-8 mt-2 text-sm text-gray-200 flex flex-col gap-2 overflow-hidden"
                         >
                           {link.submenu.map((sub, i) => (
                             <Link
                               key={i}
                               href={sub.path}
-                              className={`block py-1 px-2 rounded hover:bg-blue-700 hover:text-yellow-300 transition-colors ${isActive(sub.path) ? 'bg-blue-700 text-yellow-300' : ''}`}
-                              onClick={() => setMobileOpen(false)} // Close mobile menu on submenu item click
+                              className={`block py-1 px-2 rounded hover:bg-[#0077B6] hover:text-white transition-colors text-sm ${isActive(sub.path) ? 'bg-[#0077B6] text-white' : ''}`}
+                              onClick={() => setMobileOpen(false)}
                             >
                               {sub.title}
                             </Link>
