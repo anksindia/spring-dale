@@ -73,9 +73,9 @@ const InfiniteImageCards = ({
         {[...items, ...items].map((item, index) => (
           <li
             key={index}
-            className="w-[300px] shrink-0 rounded-xl border border-gray-300 bg-white px-4 py-3 flex flex-col items-center shadow-md"
+            className="w-[400px] shrink-0 rounded-xl border border-gray-300 bg-white px-4 py-3 flex flex-col items-center shadow-md"
           >
-            <div className="relative w-full h-40 rounded-md overflow-hidden">
+            <div className="relative w-full h-56 rounded-md overflow-hidden">
               <Image
                 src={item.image}
                 alt={item.label}
@@ -83,7 +83,7 @@ const InfiniteImageCards = ({
                 className="object-cover"
               />
             </div>
-            <span className="mt-3 text-sm font-medium text-center text-gray-800">
+            <span className="mt-3 text-sm font-medium text-center uppercase text-gray-800">
               {item.label}
             </span>
           </li>

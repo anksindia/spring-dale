@@ -13,6 +13,13 @@ html, body {
   overflow-x: hidden;
 }
 
+.bg-dotted {
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-color: white;
+}
+
+
 @layer utilities {
   @keyframes scroll {
     to {

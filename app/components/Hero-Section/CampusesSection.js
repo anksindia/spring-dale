@@ -61,13 +61,13 @@ const CampusesSection = () => {
     {
       title: 'Almora Campus',
       desc: 'Nestled in the scenic Almora hills, this campus offers nature-inspired classrooms, outdoor learning, and a strong focus on creativity and exploration.',
-      img: '/spring.webp',
+      img: '/spring.jpg',
       btn: 'Explore Branch',
     },
     {
       title: 'Dharanaula Campus',
       desc: 'Located in the heart of the city, our Dharanaula branch focuses on AI-based learning, future technologies, and collaborative innovation studios.',
-      img: '/sec.png',
+      img: '/sec.jpg',
       btn: 'Explore Branch',
     },
   ];
@@ -93,9 +93,9 @@ const CampusesSection = () => {
               />
             </div>
             <div className="p-6 flex flex-col justify-between grow text-[var(--primary-blue-2)]">
-              <h3 className="text-2xl font-semibold mb-3">{campus.title}</h3>
+              <h3 className="text-2xl upper font-bold  mb-3">{campus.title}</h3>
               <p className="text-black/80 leading-relaxed mb-6">{campus.desc}</p>
-              <button className="self-start border border-[var(--primary-blue-2)] text-[var(--primary-blue-2)] hover:bg-[var(--primary-blue-2)] hover:text-white px-5 py-2 rounded-md transition-colors duration-300 text-sm font-medium">
+              <button className="px-3 py-1.5 xl:px-4 xl:py-2 border border-gray-300 rounded-md text-[#01A6CF] hover:bg-gray-100 transition-colors whitespace-nowrap text-xs xl:text-sm font-semibold">
                 {campus.btn}
               </button>
             </div>
