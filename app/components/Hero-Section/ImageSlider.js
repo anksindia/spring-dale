@@ -32,118 +32,137 @@ const images = [
   },
 ];
 
+const imageVariants = {
+  initial: { opacity: 0, scale: 1.05 },
+  animate: { opacity: 1, scale: 1 },
+  // exit: { opacity: 0, scale: 0.95 }, // Removing exit for a cleaner transition
+};
+
+const overlayVariants = {
+  initial: { opacity: 0, y: 40 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 40 },
+};
+
+const textVariants = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 10 },
+};
+
 export default function ImageSlider({ className = "" }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const intervalRef = useRef(null);
-
   const currentImage = images[index];
 
-  // Auto-slide logic
   useEffect(() => {
     if (!paused) {
       intervalRef.current = setInterval(() => {
         setIndex((prev) => (prev + 1) % images.length);
-      }, 4000);
+      }, 5000);
     }
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [paused]);
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % images.length);
-  const prevSlide = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <div
-      className={`
-        group w-full overflow-hidden shadow-xl flex flex-col 
-        md:relative md:aspect-[16/9] md:h-[34rem] 
-        ${className}
-      `}
+      className={`relative group w-full overflow-hidden shadow-xl ${className}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Slide Image */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentImage.src}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5 }}
-          className="relative w-full h-[240px] sm:h-[320px] md:absolute md:top-0 md:left-0 md:w-full md:h-full"
-        >
-          <Image
-            src={currentImage.src}
-            alt={`Slide ${index + 1}`}
-            fill
-            className="object-cover"
-            priority
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* Image container with Fade-in and Zoom-in Effect */}
+      <div className="relative w-full h-[260px] sm:h-[360px] md:h-[36rem]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImage.src}
+            variants={imageVariants}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={currentImage.src}
+              alt={currentImage.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-      {/* Arrows */}
+      {/* Arrows (Desktop only) */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2  z-10 opacity-0 group-hover:opacity-100 transition"
-        aria-label="Previous Slide"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/40 p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        aria-label="Previous"
       >
         <FaChevronLeft size={20} />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2  z-10 opacity-0 group-hover:opacity-100 transition"
-        aria-label="Next Slide"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/40 p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        aria-label="Next"
       >
         <FaChevronRight size={20} />
       </button>
 
-      {/* Overlay */}
+      {/* Text Overlay with Swipe-up Effect */}
       {currentImage.showOverlay && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="
-      z-20
-      w-full 
-      px-3 py-3
-      sm:px-4 sm:py-5
-      md:px-6 md:py-5
-      md:max-w-[60%] lg:max-w-[50%]
-      bg-[#0292C5]/90 
-      backdrop-blur-md 
-      text-white 
-      shadow-2xl
-      md:absolute md:bottom-0 md:left-0 
-      border border-white/10 
-      md:text-center
-    "
-        >
-          {currentImage.title && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImage.title}
+            variants={overlayVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className={`
+              absolute bottom-0 left-0 w-full
+              px-4 py-4 sm:px-6 sm:py-6
+              bg-gradient-to-t from-[#01A6CF] via-[#00ccff] to-transparent
+              text-white z-20
+              md:max-w-full md:rounded-tr-2xl
+            `}
+          >
             <motion.h2
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="
-          text-xl sm:text-2xl md:text-4xl 
-          font-bold leading-snug break-words uppercase
-        "
+              key={`${currentImage.title}-h2`}
+              variants={textVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="text-lg sm:text-xl md:text-5xl font-bold  tracking-wide"
             >
               {currentImage.title}
             </motion.h2>
-          )}
-          {currentImage.caption && (
-            <p className="mt-2 text-sm sm:text-base md:text-lg font-light opacity-90 break-words uppercase">
+            <motion.p
+              key={`${currentImage.title}-p`}
+              variants={textVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="mt-2 text-sm sm:text-base md:text-lg opacity-90 tracking-wide"
+            >
               {currentImage.caption}
-            </p>
-          )}
-        </motion.div>
+            </motion.p>
+          </motion.div>
+        </AnimatePresence>
       )}
-
     </div>
   );
 }

@@ -9,7 +9,7 @@ const PageLoader = ({ setIsLoading }) => {
   const textRef = useRef([]);
   const logoRef = useRef(null);
 
-  const text = 'Empowering minds through experiential learning';
+  const text = 'EMPOWERING MINDS THROUGH EXPERIENTIAL LEARNING';
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -65,12 +65,13 @@ const PageLoader = ({ setIsLoading }) => {
       className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#0c0b2e] via-[#1d1c4a] to-[#020046] z-50 transition-all duration-1000"
     >
       {/* Animated Text */}
-      <div className="flex flex-wrap justify-center gap-2 text-xl md:text-3xl text-white font-medium tracking-wide mb-6 px-4 text-center">
+      <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-xl md:text-3xl text-white font-semibold tracking-widest mb-6 px-4 text-center">
         {text.split(' ').map((word, i) => (
           <span
             key={i}
             ref={(el) => (textRef.current[i] = el)}
             className="inline-block opacity-0"
+            style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.4)' }}
           >
             {word}
           </span>

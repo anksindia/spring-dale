@@ -8,6 +8,7 @@ import Image from 'next/image'
 
 
 
+
 const schoolFacilities = [
   {
     image: "/facilities/Cafeteria.jpg",
@@ -93,6 +94,7 @@ const page = () => {
             </button>
           </div>
         </div>
+       
         {/* In the News Section */}
         <div className="w-full bg-dotted py-20 px-6 md:px-16 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-[#1d1c4a] mb-14">
