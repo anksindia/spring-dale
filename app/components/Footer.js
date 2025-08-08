@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaFacebook, FaInstagram, FaWhatsapp, FaYoutube } from 'react-icons/fa';
@@ -48,10 +49,10 @@ const Footer = () => {
               <h3 className="font-semibold text-base mb-2">CURRICULUM & ACCREDITATION</h3>
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12">
-                  <img src="./CBSE-Black.svg" alt="CBSE Affiliated" className="h-full w-full object-contain" />
+                  <Image src="./CBSE-Black.svg" alt="CBSE Affiliated" width={100} height={60} className="h-full w-full object-contain" />
                 </div>
                 <div className="h-12 w-12 invert">
-                  <img src="./NCERT-Black.svg" alt="Follows NCERT Curriculum" className="h-full w-full object-contain" />
+                  <Image src="./NCERT-Black.svg" alt="Follows NCERT Curriculum" width={100} height={60} className="h-full w-full object-contain" />
                 </div>
               </div>
               <p className="mt-2 text-gray-300 text-xs">

@@ -6,6 +6,7 @@ import { FaGraduationCap, FaBullhorn, FaBookOpen } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const navLinks = [
   {
@@ -143,7 +144,7 @@ function Header() {
 
           {/* Logo and School Name (Responsive sizing and visibility) */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3">
-            <img src="/logo.png" alt="Spring Dales School Almora Logo" className="h-10 sm:h-12 lg:h-14 w-auto object-contain" />
+            <Image src="/logo.png" alt="Spring Dales School Almora Logo" width={100} height={100} className="h-10 sm:h-12 lg:h-14 w-auto object-contain" />
             <span className="lg:hidden text-base sm:text-lg font-bold text-[#01A6CF]">Spring Dales School Almora</span>
           </Link>
 

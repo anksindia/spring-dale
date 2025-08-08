@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"; // ✅ Added for Next.js optimized images
+import Image from "next/image"; 
 import PageHeading from "../components/PageHeading";
 import {
   FaGraduationCap,
@@ -37,22 +37,21 @@ function ImageCarousel({ images }) {
   return (
     <div className="relative w-full h-96 overflow-hidden rounded-2xl shadow-lg">
       {images.map((image, index) => (
-        <img
+        <Image
           key={index}
           src={image}
           alt={`School campus image ${index + 1}`}
-          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
-          }`}
+          fill
+          className={`object-cover transition-opacity duration-1000 ease-in-out ${index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
         />
       ))}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-white" : "bg-gray-400"
-            }`}
+            className={`w-3 h-3 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-400"
+              }`}
             onClick={() => setCurrentIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
