@@ -73,7 +73,11 @@ const CampusesSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className=" inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] py-24 px-6 sm:px-10">
+    <section ref={sectionRef} className=" inset-0 -z-10 h-full w-full bg-dotted py-24 px-6 sm:px-10">
+      <div className="max-w-7xl mx-auto text-center mb-12">
+        <span className="text-5xl sm:text-5xl block sm:inline font-bold text-gray-800 mb-2">Explore our</span>
+        <span className="text-5xl sm:text-5xl block sm:inline font-bold text-[#00ccff]">&nbsp;CAMPUSES</span>
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
         {campuses.map((campus, index) => (
           <div

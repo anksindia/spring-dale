@@ -5,6 +5,9 @@ import ImageSlider from './components/Hero-Section/ImageSlider'
 import CampusesSection from './components/Hero-Section/CampusesSection'
 import InfiniteImageCards from './components/InfiniteImageCards'
 import Image from 'next/image'
+import AcademicSection from './components/Hero-Section/AcademicSection'
+import ResultsSection from './components/Hero-Section/ResultsSection'
+import FAQsSection from './components/Hero-Section/FAQsSection'
 
 
 
@@ -75,7 +78,7 @@ const page = () => {
       <div className="relative h-fit">
         <ImageSlider className="w-full h-full object-cover" />
 
-        <div className="relative bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] py-16 px-6 md:px-12 text-center">
+        <div className="relative bg-dotted py-16 px-6 md:px-12 text-center">
           <div className="max-w-5xl mx-auto text-start">
             <h1 className="text-4xl md:text-6xl font-bold text-[var(--primary-blue-2)] mb-6 leading-tight">
               DISCOVER <br />
@@ -94,7 +97,7 @@ const page = () => {
             </button>
           </div>
         </div>
-       
+
         {/* In the News Section */}
         <div className="w-full bg-dotted py-20 px-6 md:px-16 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-[#1d1c4a] mb-14">
@@ -137,33 +140,47 @@ const page = () => {
           </div>
         </div>
 
-
+        <AcademicSection />
 
         {/* SchoolFacilitiesSection */}
         {/* Section Heading */}
-        <div className="w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] py-8 px-4 sm:px-6 text-center text-5xl font-bold text-black">
-          More Than a <span className='text-[var(--primary-blue-2)] uppercase'>Classroom</span>
+        <div className="w-full bg-dotted py-8 px-4 sm:px-6 text-center text-5xl font-bold text-black">
+          More than a <span className='text-[var(--primary-blue-2)] uppercase'>Classroom</span>
         </div>
 
         {/* Facilities Carousel */}
-        <div className="w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] py-10 px-6 sm:px-10 flex justify-center items-center">
+        <div className="w-full bg-dotted py-10 px-6 sm:px-10 flex justify-center items-center">
           <InfiniteImageCards
             items={schoolFacilities}
             direction="left"
             speed="normal"
           />
         </div>
-
-
-
-
-
         <CampusesSection />
-
-
-
-
       </div>
+      <ResultsSection />
+
+      
+      <section className="py-16 px-6 sm:px-10 bg-dotted">
+        <h3 className="text-4xl md:text-5xl font-bold text-center mb-6">
+          <span className="uppercase text-[#00ccff]">Virtual Tour</span>
+          <br />
+          of Spring Dales School, Almora
+        </h3>
+        <div className="w-full h-[60vh] mx-auto max-w-5xl">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/qycT9kWrXUo"
+            title="Virtual Tour of Spring Dales School, Almora"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="rounded-lg shadow-lg"
+          />
+        </div>
+      </section>
+      <FAQsSection />
     </div>
   )
 }
